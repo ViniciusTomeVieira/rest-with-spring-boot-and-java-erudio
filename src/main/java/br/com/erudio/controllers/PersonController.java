@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.erudio.data.vo.v1.PersonVO;
+import br.com.erudio.data.vo.v2.PersonVOV2;
 import br.com.erudio.services.PersonServices;
 
 @RestController
@@ -34,6 +35,11 @@ public class PersonController {
 		return service.create(PersonVO);
 	}
 	
+	@PostMapping(value = "/v2",consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public PersonVOV2 createV2(@RequestBody PersonVOV2 PersonVO) throws Exception {	
+		return service.createV2(PersonVO);
+	}
+	
 	@PutMapping(consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public PersonVO update(@RequestBody PersonVO PersonVO) throws Exception {	
 		return service.update(PersonVO);
@@ -48,8 +54,5 @@ public class PersonController {
 	public PersonVO findById(@PathVariable(value = "id") Long id) throws Exception {	
 		return service.findById(id);
 	}
-	
-	
-	
 
 }
